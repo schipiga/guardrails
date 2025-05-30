@@ -18,7 +18,7 @@ export class ClientGuardrails implements Guardrails {
         this.threshold = threshold;
     }
 
-    async listTools(): Promise<Tool[]> {
+    async listTools(): Promise<{ tools: Tool[] }> {
         const response = await fetch(
             `${this.server}/list-tools`,
             {

@@ -12,7 +12,7 @@ export type Output = {
 };
 
 export interface Guardrails {
-    listTools(): Promise<Tool[]>;
+    listTools(): Promise<{ tools: Tool[] }>;
     callTool(options: {
         name: string,
         arguments: Record<string, string>,

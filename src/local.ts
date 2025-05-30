@@ -47,13 +47,13 @@ export class LocalGuardrails implements Guardrails {
             .entries(criteria)
             .map(([name, description]) => ({
                 name,
-                description: `Validate prompt or reply with criteria: "${description}"`,
+                description: `Validate prompt or reply with guardrails criteria: "${description}"`,
                 inputSchema,
             }));
     }
 
-    async listTools(): Promise<Tool[]> {
-        return this.tools;
+    async listTools(): Promise<{ tools: Tool[] }> {
+        return { tools: this.tools };
     }
 
     async callTool(options: {
