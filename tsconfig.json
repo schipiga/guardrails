@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "moduleResolution": "nodenext",
+        "module": "NodeNext",
+        "target": "ES2024",
+        "strict": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "outDir": "./dst"
+    },
+    "include": ["./src"]
+}
