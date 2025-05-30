@@ -1,4 +1,4 @@
-import { Guardrails, Output, Tool } from './types';
+import { type Guardrails, type Output, type Tool } from './types';
 
 export class ClientGuardrails implements Guardrails {
     server: string;
@@ -6,7 +6,12 @@ export class ClientGuardrails implements Guardrails {
     model: string;
     threshold: number;
 
-    constructor(server: string, provider: string, model: string, threshold=0.5) {
+    constructor(
+        server: string,
+        provider: string,
+        model: string,
+        threshold=0.5,
+    ) {
         this.server = server.replace(/\/+$/, '');
         this.provider = provider;
         this.model = model;
@@ -14,24 +19,43 @@ export class ClientGuardrails implements Guardrails {
     }
 
     async listTools(): Promise<Tool[]> {
-        const fetchOptions = {
-            method: 'get',
-            headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        };
-
-        const response = await fetch(`${this.server}/list-tools`, fetchOptions);
+        const response = await fetch(
+            `${this.server}/list-tools`,
+            {
+                method: 'get',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            },
+        );
 
         return response.json();
     }
 
-    async callTool(options: { name: string; arguments: { prompt: string, reply?: string }}): Promise<Output> {
-        const fetchOptions = {
-            method: 'post',
-            headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...options, provider: this.provider, model: this.model, threshold: this.threshold }),
-        };
-
-        const response = await fetch(`${this.server}/call-tool`, fetchOptions);
+    async callTool(options: {
+        name: string,
+        arguments: {
+            prompt: string,
+            reply?: string,
+        },
+    }): Promise<Output> {
+        const response = await fetch(
+            `${this.server}/call-tool`,
+            {
+                method: 'post',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...options,
+                    provider: this.provider,
+                    model: this.model,
+                    threshold: this.threshold,
+                }),
+            },
+        );
 
         return response.json();
     }
