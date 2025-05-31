@@ -28,26 +28,34 @@ const parseJson = <T>(text: string): T => JSON.parse(text.match(/\{.+\}/g)![0]);
 export class LocalGuardrails implements Guardrails {
     provider: string;
     model: string;
-    criteria: Record<string, string>;
+    criteria: Record<string, { description: string, steps: string[] }>;
     threshold: number;
     tools: Tool[];
 
     constructor (
         provider: string,
         model: string,
-        criteria: Record<string, string>,
+        criteria: Record<string, string|{ description: string, steps: string[] }>,
         threshold=0.5,
     ) {
         this.provider = provider;
         this.model = model;
-        this.criteria = criteria;
         this.threshold = threshold;
-
-        this.tools = Object
+        this.criteria = Object
             .entries(criteria)
-            .map(([name, description]) => ({
+            .reduce<Record<string, { description: string, steps: string[] }>>((accum, [name, definition]) => {
+                if (typeof(definition) === 'string') {
+                    accum[name] = { description: definition, steps: [] };
+                } else {
+                    accum[name] = definition;
+                }
+                return accum;
+            }, {});
+        this.tools = Object
+            .entries(this.criteria)
+            .map(([name, definition]) => ({
                 name,
-                description: `Validate prompt or reply with guardrails criteria: "${description}"`,
+                description: `Validate prompt or reply with guardrails criteria: "${definition.description}"`,
                 inputSchema,
             }));
     }
@@ -71,9 +79,14 @@ export class LocalGuardrails implements Guardrails {
             throw new Error(`Unknown criteria '${options.name}'`);
         }
 
-        const stepsPrompt = Mustache.render(GEVAL_CRITERIA_STEPS, { criteria });
-        const { text: stepsText } = await generateText({ model, prompt: stepsPrompt });
-        const steps = parseJson<{ steps: string[] }>(stepsText).steps.join('\n- ');
+        let steps: string;
+        if (criteria.steps.length) {
+            steps = criteria.steps.join('\n- ');
+        } else {
+            const stepsPrompt = Mustache.render(GEVAL_CRITERIA_STEPS, { criteria });
+            const { text: stepsText } = await generateText({ model, prompt: stepsPrompt });
+            steps = parseJson<{ steps: string[] }>(stepsText).steps.join('\n- ');
+        }
 
         let gevalPrompt: string;
         if (options.arguments.reply) {
