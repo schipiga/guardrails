@@ -97,7 +97,7 @@ export class LocalGuardrails implements Guardrails {
         if (criteria.steps.length) {
             steps = criteria.steps.join('\n- ');
         } else {
-            const stepsPrompt = Mustache.render(GEVAL_CRITERIA_STEPS, { criteria });
+            const stepsPrompt = Mustache.render(GEVAL_CRITERIA_STEPS, { criteria: criteria.description });
             const { text: stepsText } = await generateText({ model, prompt: stepsPrompt });
             steps = parseJson<{ steps: string[] }>(stepsText).steps.join('\n- ');
         }
@@ -105,13 +105,15 @@ export class LocalGuardrails implements Guardrails {
         let gevalPrompt: string;
         if (options.arguments.reply) {
             gevalPrompt = Mustache.render(GEVAL_REPLY_EVALUATE, {
-                criteria, steps, maxScore,
+                steps, maxScore,
+                criteria: criteria.description,
                 input: options.arguments.prompt,
                 output: options.arguments.reply,
             })
         } else {
             gevalPrompt = Mustache.render(GEVAL_PROMPT_EVALUATE, {
-                criteria, steps, maxScore,
+                steps, maxScore,
+                criteria: criteria.description,
                 input: options.arguments.prompt,
             });
         }
@@ -121,7 +123,7 @@ export class LocalGuardrails implements Guardrails {
 
         return {
             name: options.name,
-            valid: geval.score / maxScore > this.threshold,
+            valid: geval.score / maxScore < this.threshold,
             score: geval.score / maxScore,
             reason: geval.reason,
         };
