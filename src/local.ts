@@ -11,7 +11,7 @@ import Mustache from 'mustache';
 import { Guardrails, type Output, type Tool } from './types';
 import { GEVAL_CRITERIA_STEPS, GEVAL_PROMPT_EVALUATE, GEVAL_REPLY_EVALUATE } from './g-eval';
 
-const PROVIDERS: Record<string, Function> = {
+export const PROVIDERS: Record<string, Function> = {
     openai,
     azure,
     anthropic,

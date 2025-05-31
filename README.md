@@ -37,6 +37,18 @@ MCP-compatible LLM [G-Eval](https://arxiv.org/abs/2303.16634) guardrails checker
 - `GUARDRAILS_PORT` - listening port of `guardrails` server;
 - `CRITERIA_PATH` - path to criteria file in server mode. Must be provided in server mode.
 
+## Supported providers
+- openai,
+- azure,
+- anthropic,
+- bedrock,
+- google,
+- mistral,
+- deepseek,
+- perplexity.
+
+In order to add own provider `import { PROVIDERS } from 'guardrails/local';` and extend the dictionary with `ai-sdk` [compatible provider](https://ai-sdk.dev/docs/foundations/providers-and-models). 
+
 ## Examples
 ### Local usage:
 
