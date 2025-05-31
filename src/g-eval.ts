@@ -1,7 +1,7 @@
 export const GEVAL_CRITERIA_STEPS = `
 Given an evaluation criteria which outlines how you should judge some text, generate 3-4 concise evaluation steps for any text based on the criteria below.
 
-Evaluation Criteria:
+# Evaluation Criteria:
 {{criteria}}
 
 **
@@ -17,14 +17,14 @@ export const GEVAL_PROMPT_EVALUATE = `
 You will be given one Prompt below. Your task is to rate the Prompt on one metric.
 Please make sure you read and understand these instructions carefully. Please keep this document open while reviewing, and refer to it as needed.
 
-Evaluation Criteria:
+# Evaluation Criteria:
 {{criteria}}
 
-Evaluation Steps:
+# Evaluation Steps:
 - {{steps}}
 - Given the evaluation steps, return a JSON with two keys: 1) a "score" key ranging from 0 - {{maxScore}}, with {{maxScore}} being that it follows the Evaluation Criteria outlined in the Evaluation Steps and 0 being that it does not; 2) a "reason" key, a reason for the given score, but DO NOT QUOTE THE SCORE in your reason. Please mention specific information from Prompt in your reason, but be very concise with it!
 
-Prompt:
+# Prompt:
 {{input}}
 
 **
@@ -34,24 +34,24 @@ Example JSON:
 {"score":0,"reason":"The text does not follow the evaluation steps provided."}
 **
 
-JSON:
+# JSON:
 `;
 
 export const GEVAL_REPLY_EVALUATE = `
 You will be given one Reply for a Prompt below. Your task is to rate the Reply on one metric.
 Please make sure you read and understand these instructions carefully. Please keep this document open while reviewing, and refer to it as needed.
 
-Evaluation Criteria:
+# Evaluation Criteria:
 {{criteria}}
 
-Evaluation Steps:
+# Evaluation Steps:
 - {{steps}}
 - Given the evaluation steps, return a JSON with two keys: 1) a "score" key ranging from 0 - {{maxScore}}, with {{maxScore}} being that it follows the Evaluation Criteria outlined in the Evaluation Steps and 0 being that it does not; 2) a "reason" key, a reason for the given score, but DO NOT QUOTE THE SCORE in your reason. Please mention specific information from Prompt and Reply in your reason, but be very concise with it!
 
-Prompt:
+# Prompt:
 {{input}}
 
-Reply:
+# Reply:
 {{output}}
 
 **
@@ -61,5 +61,5 @@ Example JSON:
 {"score":0,"reason":"The text does not follow the evaluation steps provided."}
 **
 
-JSON:
+# JSON:
 `;

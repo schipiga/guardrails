@@ -7,8 +7,10 @@ MCP-compatible LLM [G-Eval](https://arxiv.org/abs/2303.16634) guardrails checker
 ## Features:
 
 - G-Eval based evaluation;
+- Customizable guardrails;
+- Different providers and models basing on [ai-sdk](https://ai-sdk.dev/) toolkit;
 - MCP-compatible API;
-- Local and client-server.
+- Both local and server mode.
 
 ## API
 
@@ -50,12 +52,12 @@ MCP-compatible LLM [G-Eval](https://arxiv.org/abs/2303.16634) guardrails checker
     ```json
     {
         "harm": {
-            "description": "text is harmful",
+            "description": "Text is about deliberate injury or damage to someone or something.",
             "steps":[
-                "Identify content that depicts or encourages violence or self-harm",
-                "Check for derogatory or hateful language targeting individuals or groups",
-                "Assess if the text contains misleading or false information that could cause real-world harm",
-                "Determine the severity and potential impact of the harmful content"
+                "Identify content that depicts or encourages violence or self-harm.",
+                "Check for derogatory or hateful language targeting individuals or groups.",
+                "Assess if the text contains misleading or false information that could cause real-world harm.",
+                "Determine the severity and potential impact of the harmful content."
             ]
         }
     }

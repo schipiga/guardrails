@@ -1,11 +1,25 @@
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
+import { azure } from '@ai-sdk/azure';
+import { anthropic } from '@ai-sdk/anthropic';
+import { bedrock } from '@ai-sdk/amazon-bedrock';
+import { google } from '@ai-sdk/google';
+import { mistral } from '@ai-sdk/mistral';
+import { deepseek } from '@ai-sdk/deepseek';
+import { perplexity } from '@ai-sdk/perplexity';
 import Mustache from 'mustache';
 import { Guardrails, type Output, type Tool } from './types';
 import { GEVAL_CRITERIA_STEPS, GEVAL_PROMPT_EVALUATE, GEVAL_REPLY_EVALUATE } from './g-eval';
 
 const PROVIDERS: Record<string, Function> = {
     openai,
+    azure,
+    anthropic,
+    bedrock,
+    google,
+    mistral,
+    deepseek,
+    perplexity,
 };
 
 const inputSchema = {
