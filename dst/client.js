@@ -6,7 +6,7 @@ class ClientGuardrails {
     provider;
     model;
     threshold;
-    constructor(server, provider, model, threshold = 0.5) {
+    constructor(server, provider, model, threshold = 0.7) {
         this.server = server.replace(/\/+$/, '');
         this.provider = provider;
         this.model = model;

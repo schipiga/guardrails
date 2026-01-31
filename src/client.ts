@@ -10,7 +10,7 @@ export class ClientGuardrails implements Guardrails {
         server: string,
         provider: string,
         model: string,
-        threshold=0.5,
+        threshold=0.7,
     ) {
         this.server = server.replace(/\/+$/, '');
         this.provider = provider;

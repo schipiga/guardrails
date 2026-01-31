@@ -50,7 +50,7 @@ export class LocalGuardrails implements Guardrails {
         provider: string,
         model: string,
         criteria: Record<string, string | { description: string, steps: string[] }>,
-        threshold=0.5,
+        threshold=0.7,
     ) {
         this.provider = provider;
         this.model = model;
@@ -123,7 +123,7 @@ export class LocalGuardrails implements Guardrails {
 
         return {
             name: options.name,
-            valid: geval.score / maxScore < this.threshold,
+            valid: geval.score / maxScore >= this.threshold,
             score: geval.score / maxScore,
             reason: geval.reason,
         };

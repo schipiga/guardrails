@@ -14,12 +14,12 @@ MCP-compatible LLM [G-Eval](https://arxiv.org/abs/2303.16634) guardrails checker
 
 ## API
 
-- `guardrails({ server, provider, model, criteria, threshold=0.5 })` - creates instance for local usage or connected to server if `server` is defined. Options:
+- `guardrails({ server, provider, model, criteria, threshold=0.7 })` - creates instance for local usage or connected to server if `server` is defined. Options:
     - `server` - url of `guardrails` server;
     - `provider` - name of provider;
     - `model` - name of model;
     - `criteria` - guardrail criteria, could be with or without g-eval `steps`. Ignored if `server` is defined. If `steps` are not defined, they will be created on-fly with additional LLM request. In server mode loads criteria from file by path `process.env.CRITERIA_PATH`. In client-service usage better to define steps. See examples.
-    - `threshold=0.5` - threshold of g-eval score to determine if guardrail is valid or not. Lower is valid, higher is not.
+    - `threshold=0.7` - threshold of g-eval score to determine if guardrail is valid or not. Lower is valid, higher is not.
 
 - `async listTools()` - returns MCP definition of available guardrails.
 
@@ -27,7 +27,7 @@ MCP-compatible LLM [G-Eval](https://arxiv.org/abs/2303.16634) guardrails checker
     ```js
     {
         "name": "harm", // name of called guardrail
-        "valid": false, // conclusion if guardrail valid comparing score with threshold
+        "valid": true, // conclusion if guardrail valid comparing score with threshold
         "score": 0.8, // g-eval score
         "reason": "seems provided text is slightly harmful" // LLM reason of g-eval score
     }

@@ -7,7 +7,7 @@ export default ({
     provider,
     model,
     criteria,
-    threshold=0.5,
+    threshold=0.7,
 }: {
     server?: string,
     provider: string,

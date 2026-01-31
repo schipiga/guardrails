@@ -46,7 +46,7 @@ class LocalGuardrails {
     criteria;
     threshold;
     tools;
-    constructor(provider, model, criteria, threshold = 0.5) {
+    constructor(provider, model, criteria, threshold = 0.7) {
         this.provider = provider;
         this.model = model;
         this.threshold = threshold;
@@ -108,7 +108,7 @@ class LocalGuardrails {
         const geval = parseJson(gevalText);
         return {
             name: options.name,
-            valid: geval.score / maxScore < this.threshold,
+            valid: geval.score / maxScore >= this.threshold,
             score: geval.score / maxScore,
             reason: geval.reason,
         };
