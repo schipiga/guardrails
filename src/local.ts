@@ -49,7 +49,7 @@ export class LocalGuardrails implements Guardrails {
     constructor (
         provider: string,
         model: string,
-        criteria: Record<string, string|{ description: string, steps: string[] }>,
+        criteria: Record<string, string | { description: string, steps: string[] }>,
         threshold=0.5,
     ) {
         this.provider = provider;

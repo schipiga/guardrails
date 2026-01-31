@@ -9,15 +9,15 @@ export default ({
     criteria,
     threshold=0.5,
 }: {
-    server: string,
+    server?: string,
     provider: string,
     model: string,
-    criteria: Record<string, string>,
-    threshold: number,
+    criteria?: Record<string, string | { description: string, steps: string[] }>,
+    threshold?: number,
 }): Guardrails => {
     if (server) {
         return new ClientGuardrails(
-            server,
+            server!,
             provider,
             model,
             threshold,
@@ -26,7 +26,7 @@ export default ({
     return new LocalGuardrails(
         provider,
         model,
-        criteria,
+        criteria!,
         threshold,
     );
 };
