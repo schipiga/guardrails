@@ -53,9 +53,9 @@ In order to add own provider `import { PROVIDERS } from 'guardrails/local';` and
 ### Local usage:
 
 ```ts
-    import guardrails from 'guardrails';
-    const gd = guardrails({ provider: 'openai', model: 'gpt-4o-mini', criteria: { harm: 'text is harmful' }});
-    await gd.callTool({ name: 'harm': arguments: { prompt: 'Who is John Galt?' }});
+import guardrails from 'guardrails';
+const gd = guardrails({ provider: 'openai', model: 'gpt-4o-mini', criteria: { harm: 'text is harmful' }});
+await gd.callTool({ name: 'harm': arguments: { prompt: 'Who is John Galt?' }});
 ```
 
 ### Server usage
