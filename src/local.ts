@@ -103,16 +103,17 @@ export class LocalGuardrails implements Guardrails {
         }
 
         let gevalPrompt: string;
+        const scoreSet = `{${[...Array(maxScore + 1).keys()].join(',')}}`;
         if (options.arguments.reply) {
             gevalPrompt = Mustache.render(GEVAL_REPLY_EVALUATE, {
-                steps, maxScore,
+                steps, maxScore, scoreSet,
                 criteria: criteria.description,
                 input: options.arguments.prompt,
                 output: options.arguments.reply,
             })
         } else {
             gevalPrompt = Mustache.render(GEVAL_PROMPT_EVALUATE, {
-                steps, maxScore,
+                steps, maxScore, scoreSet,
                 criteria: criteria.description,
                 input: options.arguments.prompt,
             });
