@@ -85,6 +85,7 @@ const fastify = Fastify({
 });
 
 if (process.env.REDIS_URL) {
+  // NOTE: Enterprise-grade - connect external permanent storage to cache Evaluation Steps
   class RedisStepsCache implements IStepsCache {
     private readonly PREFIX = 'eva-judge:steps:';
     private client: Redis;
@@ -96,6 +97,7 @@ if (process.env.REDIS_URL) {
     }
 
     async set(key: string, value: string[]): Promise<void> {
+      // NOTE: Keep steps permanently, no matter from which model. Good judge generates good steps.
       await this.client.set(`${this.PREFIX}${key}`, JSON.stringify(value));
     }
 
