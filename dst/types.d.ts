@@ -1,20 +1,16 @@
-export type Tool = {
-    name: string;
-    description: string;
-    inputSchema: Object;
+import { Static } from "@sinclair/typebox";
+export declare const ASSERT_NAMES: {
+    readonly BEVAL: "B-Eval";
+    readonly GEVAL: "G-Eval";
+    readonly LLM_RUBRIC: "LLM-Rubric";
 };
-export type Output = {
-    name: string;
-    valid: boolean;
-    score: number;
-    reason: string;
-};
-export interface Guardrails {
-    listTools(): Promise<{
-        tools: Tool[];
+export declare const CallToolSchema: import("@sinclair/typebox").TObject<{
+    name: import("@sinclair/typebox").TString;
+    arguments: import("@sinclair/typebox").TObject<{
+        criteria: import("@sinclair/typebox").TString;
+        prompt: import("@sinclair/typebox").TString;
+        reply: import("@sinclair/typebox").TOptional<import("@sinclair/typebox").TString>;
+        threshold: import("@sinclair/typebox").TOptional<import("@sinclair/typebox").TNumber>;
     }>;
-    callTool(options: {
-        name: string;
-        arguments: Record<string, string>;
-    }): Promise<Output>;
-}
+}>;
+export type TCallToolSchema = Static<typeof CallToolSchema>;

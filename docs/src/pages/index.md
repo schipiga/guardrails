@@ -1,5 +1,3 @@
-# eva-guard
-
 MCP-compatible guardrails server basing on [eva-judge](https://eva-llm.github.io/eva-judge) for production runtime.
 
 ## Quick Start

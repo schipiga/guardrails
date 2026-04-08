@@ -1,5 +1,5 @@
 {
-  "name": "guardrails",
+  "name": "@eva-llm/eva-guard",
   "version": "1.0.0",
   "description": "LLM guardrails checker",
   "main": "dst/index.js",

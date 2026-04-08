@@ -1,3 +1,5 @@
 node_modules/
 *.log
 git.code-workspace
+dst/
+dist/
