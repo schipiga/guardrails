@@ -1,20 +1,18 @@
-export type Tool = {
-    name: string,
-    description: string,
-    inputSchema: Object,
-};
+import { Type, Static } from "@sinclair/typebox";
 
-export type Output = {
-    name: string,
-    valid: boolean,
-    score: number,
-    reason: string,
-};
+export const ASSERT_NAMES = {
+  BEVAL: 'B-Eval',
+  GEVAL: 'G-Eval',
+  LLM_RUBRIC: 'LLM-Rubric',
+} as const;
 
-export interface Guardrails {
-    listTools(): Promise<{ tools: Tool[] }>;
-    callTool(options: {
-        name: string,
-        arguments: Record<string, string>,
-    }): Promise<Output>;
-};
+export const CallToolSchema = Type.Object({
+  name: Type.String(),
+  arguments: Type.Object({
+    criteria: Type.String(),
+    prompt: Type.String(),
+    reply: Type.Optional(Type.String()),
+    threshold: Type.Optional(Type.Number({ default: 0.5 })),
+  }),
+});
+export type TCallToolSchema = Static<typeof CallToolSchema>;
