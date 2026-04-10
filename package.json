@@ -23,7 +23,7 @@
   },
   "homepage": "https://eva-llm.github.io/eva-guard",
   "dependencies": {
-    "@eva-llm/eva-judge": "^1.0.3",
+    "@eva-llm/eva-judge": "^1.0.4",
     "@sinclair/typebox": "^0.34.48",
     "fastify": "^5.8.2",
     "http-errors": "^2.0.1",
