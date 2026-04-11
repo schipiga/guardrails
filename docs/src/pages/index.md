@@ -1,4 +1,6 @@
-MCP-compatible guardrails server basing on [eva-judge](https://eva-llm.github.io/eva-judge) for production runtime.
+[MCP](https://modelcontextprotocol.io/docs/getting-started/intro)-compatible guardrails server basing on [eva-judge](https://eva-llm.github.io/eva-judge) for production runtime.
+
+---
 
 ## Quick Start
 
@@ -9,12 +11,15 @@ nvm use
 pnpm i
 pnpm run server
 ```
+
+---
+
 ## API
 
 ### GET /list-tools
+Returns the list of available remote tools and the schema how to call.
 
 ### POST /call-tool
-
 API is called according to schema from `GET /list-tools`, for example:
 
 ```bash
@@ -38,22 +43,15 @@ Response Example:
 }
 ```
 
+---
+
 ## Settings
 
 **NOTE!** It uses `temperature=0` to be closer to determenistic result.
 
 ### Environment Variables
 
-`PROVIDER` - default `openai`;
-
-`MODEL` - default `gpt-4.1-mini`;
-
-`LLM_PROVIDER_CONCURRENCY` - size of workers pool to call LLM provider, default `100`;
-
-`REDIS_URL`- if defined it uses redis as permanent storage of G-Eval/B-Eval Evaluation Steps.
-
----
-
-## License
-
-MIT
+- `PROVIDER` - default `openai`;
+- `MODEL` - default `gpt-4.1-mini`;
+- `LLM_PROVIDER_CONCURRENCY` - size of workers pool to call LLM provider, default `100`;
+- `REDIS_URL`- if defined it uses Redis as permanent storage of G-Eval / B-Eval Evaluation Steps.
