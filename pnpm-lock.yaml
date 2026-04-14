@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@eva-llm/eva-judge':
-        specifier: ^1.0.4
-        version: 1.0.4
+        specifier: ^1.0.6
+        version: 1.0.6
       '@sinclair/typebox':
         specifier: ^0.34.48
         version: 0.34.49
@@ -138,8 +138,8 @@ packages:
     resolution: {integrity: sha512-reXRwoJ6CfChoqAsBszUYajAF8Z2LRE+CRcKocvFSMpIiLOtYU3aJ9trmn6VVPAzbbY5LXF+FfmUslbXk1SYFg==}
     engines: {node: '>=20.0.0'}
 
-  '@eva-llm/eva-judge@1.0.4':
-    resolution: {integrity: sha512-jJDQpaf5+pQm0JGNiTcoBbeSV7hOpj3NDlxsl/Th5TzEbxqg2S3oojpNHVibgjsPGORe8vu8FsJaRUJd5gI42w==}
+  '@eva-llm/eva-judge@1.0.6':
+    resolution: {integrity: sha512-5/nupUqM3gK8zKw8rcodHWudTMowT5Tj5TAz6Mp81BA5n32a4yhuzvqrbE/DCyXyQcguT/EBKZ08do9XXvOLPA==}
     engines: {node: '>=22'}
 
   '@fastify/ajv-compiler@4.0.5':
@@ -625,7 +625,7 @@ snapshots:
       '@smithy/types': 4.14.0
       tslib: 2.8.1
 
-  '@eva-llm/eva-judge@1.0.4':
+  '@eva-llm/eva-judge@1.0.6':
     dependencies:
       '@ai-sdk/amazon-bedrock': 4.0.92(zod@4.3.6)
       '@ai-sdk/anthropic': 3.0.68(zod@4.3.6)
