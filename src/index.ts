@@ -110,7 +110,7 @@ if (process.env.REDIS_URL) {
 
       try {
         return JSON.parse(data) as string[];
-      } catch (e) {
+      } catch {
         return undefined;
       }
     }
